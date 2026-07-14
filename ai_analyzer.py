@@ -33,7 +33,7 @@ def analyze_unprocessed_jobs():
 
     # 파이어베이스에서 'AI분석여부'가 False인 공고를 가져옵니다.
     # (과부하 방지를 위해 한 번에 5개씩만 가져옵니다)
-    docs = db.collection('jobs').where('AI분석여부', '==', False).limit(5).stream()
+    docs = db.collection('jobs').where("`AI분석여부`", "==", False).limit(5).stream()
 
     has_docs = False
 
