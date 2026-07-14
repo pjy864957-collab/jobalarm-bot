@@ -8,7 +8,7 @@ import json
 # =====================================================================
 
 # 1) 파이어베이스 비밀키 파일 이름 (main.py와 같은 폴더에 있어야 합니다)
-key_file_name = "job-alarm-b2c48-firebase-adminsdk-fbsvc-848e62ba18.json"
+key_file_name = "firebase_key.json"
 
 # 2) 구글 AI 스튜디오에서 발급받은 API 키
 gemini_api_key = "AQ.Ab8RN6LpTLPiGIkactykli_3otfOCVl0X3JnFN5wWc_1hffghQ"
