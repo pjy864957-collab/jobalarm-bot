@@ -1,0 +1,40 @@
+name: Job Crawler and AI Analyzer
+
+on:
+  schedule:
+    # 한국 시간 기준 매일 오전 9시, 오후 6시에 자동 실행 (UTC 기준 0시, 9시)
+    - cron: '0 0,9 * * *'
+  workflow_dispatch: # 깃허브 웹사이트에서 수동으로 '실행' 버튼을 누를 수 있게 해줍니다.
+
+jobs:
+  run-crawler-and-ai:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 깃허브에 올라간 내 코드를 컴퓨터로 가져오기
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2. 파이썬 설치하기
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3. 크롤링 및 AI 분석에 필요한 도구 설치하기
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      # 4. 깃허브 금고(Secrets)에 숨겨둔 텍스트를 파일(firebase_key.json)로 만들기
+      - name: Create Firebase JSON from Secret
+        run: |
+          echo '${{ secrets.FIREBASE_JSON }}' > firebase_key.json
+
+      # 5. 크롤러(main.py) 먼저 실행하기
+      - name: Run Crawler
+        run: python main.py
+
+      # 6. 이어서 AI 분석기(ai_analyzer.py) 실행하기
+      - name: Run AI Analyzer
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python ai_analyzer.py
