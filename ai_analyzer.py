@@ -11,7 +11,7 @@ import json
 key_file_name = "firebase_key.json"
 
 # 2) 구글 AI 스튜디오에서 발급받은 API 키
-gemini_api_key = "AQ.Ab8RN6LpTLPiGIkactykli_3otfOCVl0X3JnFN5wWc_1hffghQ"
+gemini_api_key = os.environ.get("GEMINI_API_KEY")
 
 # =====================================================================
 
