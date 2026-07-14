@@ -2,6 +2,7 @@ import google.generativeai as genai
 import firebase_admin
 from firebase_admin import credentials, firestore, messaging
 import json
+import os
 
 # =====================================================================
 # 1. 초기 세팅 (본인의 정보로 반드시 수정해야 하는 부분!)
